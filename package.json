@@ -1,28 +1,23 @@
 {
-  "name": "youtube-ingest",
-  "version": "1.0.0",
-  "description": "This is a quick script to index (or just grab JSON) for youtube videos.",
-  "main": "index.html",
+  "name": "@example/minimal",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "eleventy",
-    "start": "eleventy --serve"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "devDependencies": {
+    "astro": "^0.20.12"
+  },
   "dependencies": {
     "@11ty/eleventy": "^0.12.1",
-    "algoliasearch": "^4.10.5",
+    "@astrojs/renderer-react": "^0.2.2",
+    "algoliasearch": "^4.11.0",
     "axios": "^0.21.4",
-    "dotenv": "^10.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/brob/netlify-youtube-ingest.git"
-  },
-  "bugs": {
-    "url": "https://github.com/brob/netlify-youtube-ingest/issues"
-  },
-  "homepage": "https://github.com/brob/netlify-youtube-ingest#readme"
+    "dotenv": "^10.0.0",
+    "react-instantsearch-dom": "^6.15.0",
+    "react-moment": "^1.1.1"
+  }
 }

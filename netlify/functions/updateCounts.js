@@ -6,7 +6,7 @@ const YOUTUBE_KEY = process.env.YOUTUBE_KEY
 const algolia = require('algoliasearch')
 const client = algolia(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_API_KEY)
 
-const handler = async (event) => {
+const handler = async () => {
   try {
     // Get the records from the algolia index
     const index = client.initIndex(process.env.VIDEO_INDEX)

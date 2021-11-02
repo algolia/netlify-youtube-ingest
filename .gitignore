@@ -1,6 +1,18 @@
-# Local Netlify folder
-.netlify
+# build output
+dist
+.netlify 
+# dependencies
+node_modules/
+.snowpack/
 
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# environment variables
 .env
-node_modules
-_site
+.env.production
+
+# macOS-specific files
+.DS_Store
