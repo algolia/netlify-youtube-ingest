@@ -4,3 +4,7 @@
   ALGOLIA_API_KEY = "The Algolia admin API Key"
   VIDEO_INDEX = "The Index name (i.e. video_index)"
   ALGOLIA_SEARCH_KEY="Search-only key. Optional. For the included small frontend"
+
+[build]
+  command = "npm run build"
+  publish = "dist"
