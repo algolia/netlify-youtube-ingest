@@ -8,8 +8,9 @@ const client = algolia(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_API_KEY)
 
 const handler = async (event) => {
   try {
-    // Get the url from the event query
-    const { videoUrl, index = false } = event.queryStringParameters
+    // Get the url from the event body
+    const { videoUrl, index = true } = JSON.parse(event.body)
+
     // get id from youtube url
     const id = videoUrl.split('v=')[1].split('&')[0]
     // Build the URL to fetch
@@ -45,7 +46,7 @@ const handler = async (event) => {
 
         return {
           statusCode: 200,
-          body: JSON.stringify(dataForIndex)
+          body: JSON.stringify({message: `Data indexed for ${dataForIndex.title}`, ...dataForIndex})
         }
       } catch (err) {
         return {

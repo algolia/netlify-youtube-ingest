@@ -1,0 +1,8 @@
+.hit {
+    padding: 5px;
+}
+.hit > em {
+    background-color: #f9fc20;
+    border-radius: 3px;
+    padding: 1px;
+}

@@ -1,0 +1,55 @@
+---
+import Search from '../components/InstantSearch/InstantSearch.jsx';
+import '../styles/global.css'; // include global CSS
+import Layout from '../layouts/base.astro'
+
+---
+
+<Layout title="Ingest a channel of videos">
+    <form class="form" method="POST" action="/.netlify/functions/getYoutubeJson">
+        <div class="message"></div>
+        <input type="text" name="channelId" placeholder="Channel ID" />
+        <input type="text" name="maxResults" placeholder="Max Results" />
+        <input type="submit" value="Submit" />
+    </form>
+</Layout>
+
+<script>
+function displayMessage(message, element) {
+    element.innerHTML = message;
+}
+
+// Add submit handler for all .form
+document.querySelectorAll('.form').forEach(form => {
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const url = form.action;
+        const method = form.method;
+        
+        // convert formData to json object
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        const body = JSON.stringify(data);
+        console.log({formData, url, method, body})
+        fetch(url, {
+            method,
+            body
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            displayMessage(data.message, form.querySelector('.message'));    
+        })
+        .catch(error => {
+            console.error(error)
+            displayMessage(error, form.querySelector('.message'));    
+
+        });
+    });
+});
+
+</script>

@@ -9,7 +9,7 @@ const client = algolia(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_API_KEY)
 const handler = async (event) => {
   try {
     // Destructure the query parameters
-    const {channelId, maxResults=20, index=false} = event.queryStringParameters
+    const {channelId, maxResults=20, index=true} = JSON.parse(event.body)
     // Get a list of videos from the YouTube API
     const videoList = await axios.get(`https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_KEY}&type=video&maxResults=${maxResults}&q=&channelId=${channelId}&order=date`)
     // Get the data from the videos
@@ -48,7 +48,7 @@ const handler = async (event) => {
         await index.saveObjects(normalizedVideos)
         return {
           statusCode: 200,
-          body: JSON.stringify(normalizedVideos)
+          body: JSON.stringify({normalizedVideos, message: `${normalizedVideos.length} videos saved to the index`})
         }
       } catch(err) {
         return {

@@ -1,20 +1,11 @@
 ---
-	import Search from '../components/InstantSearch.jsx';
+import Search from '../components/InstantSearch/InstantSearch.jsx';
+import '../styles/global.css'; // include global CSS
+import Layout from '../layouts/base.astro'
 
 ---
-<html lang="en">
+<Layout title="Dashboard">
 
-<head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-	<meta name="viewport" content="width=device-width" />
-	<title>Welcome to Astro</title>
-</head>
-
-<body>
-	<h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
 	<Search client:load="react" />
-	
-</body>
 
-</html>
+</Layout>
