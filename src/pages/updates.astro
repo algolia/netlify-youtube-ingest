@@ -19,9 +19,9 @@ import Stack from '../components/Stack.astro'
             <form class="form one-liner" method="POST" action="/.netlify/functions/getYoutubeByUrl">
                 <div class="message"></div>
                 <label for="videoUrl">
-                    URL for video from YouTube
+                    URL for video from YouTube *
                 </label>
-                <input placeholder="https://www.youtube.com/watch?v=_Vtvc0JIgQ8&t=1s" type="text" name="videoUrl"
+                <input required placeholder="https://www.youtube.com/watch?v=_Vtvc0JIgQ8&t=1s" type="text" name="videoUrl"
                     id="videoUrl">
                 <input type="submit" value="Update this video">
             </form>
