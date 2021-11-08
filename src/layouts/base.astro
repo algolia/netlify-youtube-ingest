@@ -8,6 +8,7 @@ const {title} = Astro.props;
 <head>
 	<meta charset="utf-8" />
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+	<link rel="icon" type="stylesheet" href="/global.css" />
 	<meta name="viewport" content="width=device-width" />
 	<title>{title} - YouTube Ingest Dashboard</title>
 <style>
@@ -143,7 +144,7 @@ input {
     flex: 1 0 100%;
 }
 </style>
-<link rel="stylesheet" href="{Astro.resolve('../styles/global.css')}"></head>
+</head>
 
 <body>
 <div class="stripe shadowed header">
