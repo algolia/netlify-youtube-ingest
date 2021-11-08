@@ -5,8 +5,8 @@ import Card from '../components/Card.astro'
 import Stack from '../components/Stack.astro'
 ---
 
-    <Layout title="Update individual videos or all videos">
-        <Stack>
+<Layout title="Update individual videos or all videos">
+    <Stack>
         <Card header="Update all statistics for index">
             <form class="form" method="POST" action="/.netlify/functions/updateCounts">
                 <div class="message"></div>
@@ -16,54 +16,54 @@ import Stack from '../components/Stack.astro'
         </Card>
 
         <Card header="Update all data for a single video">
-            <form class="form" method="POST" action="/.netlify/functions/getYoutubeByUrl">
+            <form class="form one-liner" method="POST" action="/.netlify/functions/getYoutubeByUrl">
                 <div class="message"></div>
                 <label for="videoUrl">
-                URL for video from YouTube <br />
-                <input placeholder="https://www.youtube.com/watch?v=_Vtvc0JIgQ8&t=1s" type="text" name="videoUrl" id="videoUrl">
+                    URL for video from YouTube
                 </label>
-
+                <input placeholder="https://www.youtube.com/watch?v=_Vtvc0JIgQ8&t=1s" type="text" name="videoUrl"
+                    id="videoUrl">
                 <input type="submit" value="Update this video">
             </form>
         </Card>
-</Stack>
-    </Layout>
+    </Stack>
+</Layout>
 <script>
-function displayMessage(message, element) {
-    element.innerHTML = message;
-}
+    function displayMessage(message, element) {
+        element.innerHTML = message;
+    }
 
-// Add submit handler for all .form
-document.querySelectorAll('.form').forEach(form => {
-    form.addEventListener('submit', event => {
-        event.preventDefault();
-        const formData = new FormData(form);
-        const url = form.action;
-        const method = form.method;
-        
-        // convert formData to json object
-        const data = {};
-        formData.forEach((value, key) => {
-            data[key] = value;
-        });
+    // Add submit handler for all .form
+    document.querySelectorAll('.form').forEach(form => {
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const url = form.action;
+            const method = form.method;
 
-        const body = JSON.stringify(data);
-        console.log({formData, url, method, body})
-        fetch(url, {
-            method,
-            body
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            displayMessage(data.message, form.querySelector('.message'));    
-        })
-        .catch(error => {
-            console.error(error)
-            displayMessage(error, form.querySelector('.message'));    
+            // convert formData to json object
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
 
+            const body = JSON.stringify(data);
+            console.log({ formData, url, method, body })
+            fetch(url, {
+                method,
+                body
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    displayMessage(data.message, form.querySelector('.message'));
+                })
+                .catch(error => {
+                    console.error(error)
+                    displayMessage(error, form.querySelector('.message'));
+
+                });
         });
     });
-});
 
 </script>

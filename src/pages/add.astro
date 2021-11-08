@@ -1,17 +1,34 @@
 ---
-import Search from '../components/InstantSearch/InstantSearch.jsx';
 import '../styles/global.css'; // include global CSS
 import Layout from '../layouts/base.astro'
-
+import Card from '../components/Card.astro'
+import Stack from '../components/Stack.astro'
 ---
 
-<Layout title="Ingest a channel of videos">
-    <form class="form" method="POST" action="/.netlify/functions/getYoutubeJson">
-        <div class="message"></div>
-        <input type="text" name="channelId" placeholder="Channel ID" />
-        <input type="text" name="maxResults" placeholder="Max Results" />
-        <input type="submit" value="Submit" />
-    </form>
+<Layout title="Add videos">
+<Stack>
+    <Card header="Add a channel of videos">
+        <form class="one-liner form" method="POST" action="/.netlify/functions/getYoutubeJson">
+            <div class="message"></div>
+            <input type="text" name="channelId" placeholder="Channel ID" />
+            <input type="text" name="maxResults" placeholder="Max Results" />
+            <input type="submit" value="Submit" />
+        </form>
+    </Card>
+
+    <Card header="Add video by URL">
+        <form class="form one-liner" method="POST" action="/.netlify/functions/getYoutubeByUrl">
+            <div class="message"></div>
+            <label for="videoUrl">
+                URL for video from YouTube *
+            </label>
+            <input required placeholder="Like: https://www.youtube.com/watch?v=_Vtvc0JIgQ8&t=1s" type="text" name="videoUrl" id="videoUrl">
+
+
+            <input type="submit" value="Update this video">
+        </form>
+    </Card>
+</Stack>
 </Layout>
 
 <script>

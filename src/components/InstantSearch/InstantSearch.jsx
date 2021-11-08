@@ -5,7 +5,6 @@ import { InstantSearch, Configure, Pagination, SearchBox, Hits, Snippet, Highlig
 import Styles from './InstantSearch.module.css'
 const searchClient = algoliasearch(import.meta.env.VITE_ALGOLIA_APP_ID, import.meta.env.VITE_ALGOLIA_SEARCH_KEY);
 const Hit = ({ hit }) => {
-  console.log(hit)
   return (
     <div className={Styles.hit}>
       <h3><a href={`https://www.youtube.com/watch?v=${hit.objectID}`}><Highlight hit={hit} attribute="title" /></a></h3>

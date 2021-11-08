@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+* {
+    box-sizing: border-box;
+}
 html {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 105%;
@@ -16,7 +18,10 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-
+ul {
+    list-style: none;
+    padding: 0;
+}
 h2 {
     font-size: 2.5rem;
 }
@@ -65,7 +70,8 @@ input {
 }
 
 .container {
-    max-width: 100ch;
+    max-width: 80ch;
+    width:100%;
     margin: 0 auto;
     padding: 0 2rem;
 }
@@ -86,4 +92,39 @@ input {
 
 .ais-Highlight-highlighted, .ais-Snippet-highlighted {
     background-color: #bdff24;
+}
+.ais-SearchBox-input {
+    width: 100%;
+}
+.ais-SearchBox-submit, .ais-SearchBox-reset {
+    display: none;
+}
+.ais-Pagination-list {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.ais-Pagination-link {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    line-height: 1;
+    text-decoration: none;
+    color: #333;
+}
+.form.one-liner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+
+}
+.form.one-liner [type="text"] {
+    flex: 1;
+}
+.form.one-liner [type="submit"] {
+    flex: 0;
+}
+.form.one-liner label {
+    flex: 1 0 100%;
 }
