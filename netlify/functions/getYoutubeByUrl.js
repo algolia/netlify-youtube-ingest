@@ -4,7 +4,7 @@ const YOUTUBE_KEY = process.env.YOUTUBE_KEY
 
 // Initialize the algolia client
 const algolia = require('algoliasearch')
-const client = algolia(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_API_KEY)
+const client = algolia(process.env.VITE_ALGOLIA_APP_ID, process.env.ALGOLIA_API_KEY)
 
 const handler = async (event) => {
   try {

@@ -1,6 +1,6 @@
 # Netlify function to index YouTube videos on Algolia
 
-This is a quick script to index (or just grab JSON) for youtube videos.
+This is a quick dashboard for ingesting youtube videos into an Algolia Index.
 
 ## Requirements
 
