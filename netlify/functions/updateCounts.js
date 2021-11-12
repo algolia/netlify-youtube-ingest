@@ -29,12 +29,12 @@ const handler = async () => {
     // if chunks length is greater than 1, then we need to make multiple requests
     if (chunks.length > 1) {
         const promises = chunks.map(chunk => {
-            return axios.get(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${chunk.join(',')}&key=${YOUTUBE_KEY}`)
+            return axios.get(`https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${chunk.join(',')}&key=${YOUTUBE_KEY}`)
         })
         const responses = await Promise.all(promises)
         var data = responses.map(response => response.data.items).flat()
     } else {
-        const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoIds.join(',')}&key=${YOUTUBE_KEY}`)
+        const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${videoIds.join(',')}&key=${YOUTUBE_KEY}`)
         var data = response.data.items
     }
     

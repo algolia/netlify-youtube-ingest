@@ -23,6 +23,7 @@ const Search = () => {
             hitsPerPage={10}
         />
         <SearchBox />
+        <Pagination />
         <Hits hitComponent={Hit} />
         <Pagination />
     </InstantSearch>
