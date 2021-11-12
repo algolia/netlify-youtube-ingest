@@ -1,0 +1,14 @@
+---
+const {active} = Astro.props
+---
+<style>
+    .active {
+        background-color: #eee;
+    }
+</style>
+
+<nav>
+    <a class={(active === 'home') ? 'active' : ''} href="/">Home</a>
+    <a class={(active === 'update') ? 'active' : ''} href="/updates">Update Videos</a>
+    <a class={(active === 'add') ? 'active' : ''} href="/add">Add Videos</a>
+</nav>
