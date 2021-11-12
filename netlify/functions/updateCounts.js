@@ -6,7 +6,7 @@ const YOUTUBE_KEY = process.env.YOUTUBE_KEY
 const algolia = require('algoliasearch')
 const client = algolia(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_API_KEY)
 
-const handler = async (event) => {
+const handler = async () => {
   try {
     // Get the records from the algolia index
     const index = client.initIndex(process.env.VIDEO_INDEX)
@@ -29,14 +29,15 @@ const handler = async (event) => {
     // if chunks length is greater than 1, then we need to make multiple requests
     if (chunks.length > 1) {
         const promises = chunks.map(chunk => {
-            return axios.get(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${chunk.join(',')}&key=${YOUTUBE_KEY}`)
+            return axios.get(`https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${chunk.join(',')}&key=${YOUTUBE_KEY}`)
         })
         const responses = await Promise.all(promises)
         var data = responses.map(response => response.data.items).flat()
     } else {
-        const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoIds.join(',')}&key=${YOUTUBE_KEY}`)
+        const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${videoIds.join(',')}&key=${YOUTUBE_KEY}`)
         var data = response.data.items
     }
+    
     const normalizedVideos = data.map(video => {
         const {statistics} = video
         return {
@@ -47,15 +48,19 @@ const handler = async (event) => {
             objectID: video.id,
         }
       })
-
+      console.log(normalizedVideos[0])
       // Update the records in the algolia index
       const saveStatus = await index.partialUpdateObjects(normalizedVideos, {createIfNotExists: true})
     return {
         statusCode: 200,
-        body: JSON.stringify(saveStatus)
+        body: JSON.stringify({...saveStatus, message: `Counts updated for ${saveStatus.objectIDs.length} videos`})
     }
   } catch (error) {
     console.log(error)
+    return {
+        statusCode: 500,
+        body: JSON.stringify({error, message: error})
+    }
   }
 }
 

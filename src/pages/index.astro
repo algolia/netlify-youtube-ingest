@@ -1,0 +1,13 @@
+---
+import Search from '../components/InstantSearch/InstantSearch.jsx';
+import '../styles/global.css'; // include global CSS
+import Layout from '../layouts/base.astro'
+import Card from '../components/Card.astro'
+
+---
+<Layout active="home" title="Dashboard">
+	<Card header="Search Preview">
+		<Search client:load="react" />
+	</Card>
+
+</Layout>
