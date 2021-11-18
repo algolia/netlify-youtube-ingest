@@ -13,6 +13,7 @@ const getAllVideoIds = async (channelId, maxResults=20) => {
   let page = 1
   while (nextPageToken !== undefined) {
     const response = await axios.get(`https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_KEY}&channelId=${channelId}&part=snippet&order=date&maxResults=${maxResults}&pageToken=${nextPageToken}`)
+    console.log(response.data)
     videoIds = videoIds.concat(response.data.items.map(item => item.id.videoId))
     nextPageToken = response.data.nextPageToken
     page++
